@@ -22,16 +22,37 @@ inquirer
       type: "input",
       name: "id",
       message: "Enter the team manager’s employee ID:",
+      validate: function (input) {
+        if (/^\d+$/.test(input)) {
+          return true;
+        } else {
+          return "Please enter a valid ID number must be numbers only";
+        }
+      },
     },
     {
       type: "input",
       name: "email",
       message: "Enter the team manager’s email address:",
+      validate: function (input) {
+        if (/^\S+@\S+\.\S+$/.test(input)) {
+          return true;
+        } else {
+          return "Please enter a valid email address";
+        }
+      },
     },
     {
       type: "input",
       name: "officeNumber",
       message: "Enter the team manager’s office number:",
+      validate: function (input) {
+        if (/^\d+$/.test(input)) {
+          return true;
+        } else {
+          return "Please enter a valid ID number must be numbers only";
+        }
+      },
     },
   ])
   .then((managerAnswers) => {
@@ -97,11 +118,25 @@ function promptEngineer(teamMembers) {
         type: "input",
         name: "id",
         message: "Enter the engineer’s employee ID:",
+        validate: function (input) {
+          if (/^\d+$/.test(input)) {
+            return true;
+          } else {
+            return "Please enter a valid ID number must be numbers only";
+          }
+        },
       },
       {
         type: "input",
         name: "email",
         message: "Enter the engineer’s email address:",
+        validate: function (input) {
+          if (/^\S+@\S+\.\S+$/.test(input)) {
+            return true;
+          } else {
+            return "Please enter a valid email address";
+          }
+        },
       },
       {
         type: "input",
@@ -110,9 +145,9 @@ function promptEngineer(teamMembers) {
       },
     ])
     .then((engineerAnswers) => {
-      const { name, id, email, officeNumber } = engineerAnswers;
+      const { name, id, email, officeNumber, github } = engineerAnswers;
       //creates a new Engineer object from the Engineer class
-      const engineer = new Engineer(name, id, email, officeNumber);
+      const engineer = new Engineer(name, id, email, github);
 
       // pushes the engineer employee to the team meembers array
       teamMembers.push(engineer);
@@ -135,22 +170,36 @@ function promptIntern(teamMembers) {
         type: "input",
         name: "id",
         message: "Enter the Intern’s employee ID:",
+        validate: function (input) {
+          if (/^\d+$/.test(input)) {
+            return true;
+          } else {
+            return "Please enter a valid ID number must be numbers only";
+          }
+        },
       },
       {
         type: "input",
         name: "email",
         message: "Enter the Intern’s email address:",
+        validate: function (input) {
+          if (/^\S+@\S+\.\S+$/.test(input)) {
+            return true;
+          } else {
+            return "Please enter a valid email address";
+          }
+        },
       },
       {
         type: "input",
-        name: "github",
-        message: "Enter the Intern’s GitHub username:",
+        name: "school",
+        message: "Enter the Intern’s school name:",
       },
     ])
     .then((internAnswers) => {
-      const { name, id, email, officeNumber } = internAnswers;
+      const { name, id, email, school } = internAnswers;
       //creates a new Engineer object from the Engineer class
-      const intern = new Intern(name, id, email, officeNumber);
+      const intern = new Intern(name, id, email, school);
 
       // pushes the engineer employee to the team meembers array
       teamMembers.push(intern);
