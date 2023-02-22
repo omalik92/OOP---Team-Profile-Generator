@@ -10,8 +10,6 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 // Prompt for the team manager's information
 inquirer
   .prompt([
@@ -74,6 +72,14 @@ function promptNextAction(teamMembers) {
       } else {
         // The user chose to finish building the team, so we can do something with the teamMembers array here
         console.log("Team building complete.");
+        const html = renderHTML(teamMembers);
+        console.log(html);
+
+        // Write the HTML content to a file named 'team.html' in the specified directory
+        fs.writeFile(outputPath, html, (err) => {
+          if (err) throw err;
+          console.log("HTML file created successfully.");
+        });
       }
     });
 }
@@ -123,22 +129,22 @@ function promptIntern(teamMembers) {
       {
         type: "input",
         name: "name",
-        message: "Enter the engineer’s name:",
+        message: "Enter the Intern’s name:",
       },
       {
         type: "input",
         name: "id",
-        message: "Enter the engineer’s employee ID:",
+        message: "Enter the Intern’s employee ID:",
       },
       {
         type: "input",
         name: "email",
-        message: "Enter the engineer’s email address:",
+        message: "Enter the Intern’s email address:",
       },
       {
         type: "input",
         name: "github",
-        message: "Enter the engineer’s GitHub username:",
+        message: "Enter the Intern’s GitHub username:",
       },
     ])
     .then((internAnswers) => {
@@ -152,4 +158,8 @@ function promptIntern(teamMembers) {
       // Call a function to prompt the user for the next action
       promptNextAction(teamMembers);
     });
+}
+
+function renderHTML(teamMembers) {
+  return render(teamMembers);
 }
