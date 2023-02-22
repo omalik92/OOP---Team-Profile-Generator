@@ -74,61 +74,82 @@ function promptNextAction(teamMembers) {
       } else {
         // The user chose to finish building the team, so we can do something with the teamMembers array here
         console.log("Team building complete.");
-        console.log(teamMembers);
       }
     });
 }
 
-// // Prompt for the engineer's information
-// function promptEngineer(teamMembers) {
-//   inquirer
-//     .prompt([
-//       {
-//         type: "input",
-//         name: "name",
-//         message: "Enter the engineer’s name:",
-//       },
-//       {
-//         type: "input",
-//         name: "id",
-//         message: "Enter the engineer’s employee ID:",
-//       },
-//       {
-//         type: "input",
-//         name: "email",
-//         message: "Enter the engineer’s email address:",
-//       },
-//       {
-//         type: "input",
-//         name: "github",
-//         message: "Enter the engineer’s GitHub username:",
-//       },
-//     ])
-//     .then((engineerAnswers) => {
-//       // Store the engineer's information
-//       const engineer = {
-//         name: engineerAnswers.name,
-//         id: engineerAnswers.id,
-//         email: engineerAnswers.email,
-//         github: engineerAnswers.github,
-//         role: "Engineer", // set the role to Engineer
-//       };
+// Prompt for the engineer's information
+function promptEngineer(teamMembers) {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Enter the engineer’s name:",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter the engineer’s employee ID:",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter the engineer’s email address:",
+      },
+      {
+        type: "input",
+        name: "github",
+        message: "Enter the engineer’s GitHub username:",
+      },
+    ])
+    .then((engineerAnswers) => {
+      const { name, id, email, officeNumber } = engineerAnswers;
+      //creates a new Engineer object from the Engineer class
+      const engineer = new Engineer(name, id, email, officeNumber);
 
-//       // Add the engineer to the team members array
-//       teamMembers.push(engineer);
+      // pushes the engineer employee to the team meembers array
+      teamMembers.push(engineer);
 
-//       // Call a function to prompt the user for the next action
-//       promptNextAction(teamMembers);
-//     });
-// }
+      // Call a function to prompt the user for the next action
+      promptNextAction(teamMembers);
+    });
+}
 
-// // Prompt for the intern's information
-// function promptIntern(teamMembers) {
-//   inquirer
-//     .prompt([
-//       {
-//         type: 'input',
-//         name: 'name',
-//         message: 'Enter the intern’s name:',
-//       },
-//       {
+// Prompt for the engineer's information
+function promptIntern(teamMembers) {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "Enter the engineer’s name:",
+      },
+      {
+        type: "input",
+        name: "id",
+        message: "Enter the engineer’s employee ID:",
+      },
+      {
+        type: "input",
+        name: "email",
+        message: "Enter the engineer’s email address:",
+      },
+      {
+        type: "input",
+        name: "github",
+        message: "Enter the engineer’s GitHub username:",
+      },
+    ])
+    .then((internAnswers) => {
+      const { name, id, email, officeNumber } = internAnswers;
+      //creates a new Engineer object from the Engineer class
+      const intern = new Intern(name, id, email, officeNumber);
+
+      // pushes the engineer employee to the team meembers array
+      teamMembers.push(intern);
+
+      // Call a function to prompt the user for the next action
+      promptNextAction(teamMembers);
+    });
+}
