@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/omalik92/OOP---Team-Profile-Generator#readme",
   "dependencies": {
-    "inquirer": "6.5",
+    "inquirer": "6.5"
+  },
+  "devDependencies": {
     "jest": "24.9"
   }
 }

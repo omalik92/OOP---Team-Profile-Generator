@@ -94,7 +94,6 @@ function promptNextAction(teamMembers) {
         // The user chose to finish building the team, so we can do something with the teamMembers array here
         console.log("Team building complete.");
         const html = renderHTML(teamMembers);
-        console.log(html);
 
         // Write the HTML content to a file named 'team.html' in the specified directory
         fs.writeFile(outputPath, html, (err) => {
